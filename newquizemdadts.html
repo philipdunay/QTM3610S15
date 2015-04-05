@@ -1,0 +1,207 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Time Series Activity</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-03-12"><meta name="DC.source" content="newquizemdadts.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Time Series Activity</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Information</a></li><li><a href="#2">Import the data</a></li><li><a href="#3">Plot the Time Series</a></li><li><a href="#4">Analysis of fitted result</a></li><li><a href="#5">Forecast for Q2 2009</a></li></ul></div><h2>Information<a name="1"></a></h2><p>Prepared by: Philip Dunay on March 12, 2015 for Emdad (QTM3610)</p><h2>Import the data<a name="2"></a></h2><pre class="codeinput">[~, ~, raw] = xlsread(<span class="string">'/Users/philipdunay/Dropbox/Spring 2015/QTM3610 Files/Class Data/Excel Data Files/Toys R Us.xls'</span>,<span class="string">'DATA'</span>);
+raw = raw(2:end,2:end);
+format <span class="string">longg</span>
+
+<span class="comment">% Create output variable</span>
+data = reshape([raw{:}],size(raw));
+
+<span class="comment">%Y(i) = b0 * b1^(X(i)) * b2^q1 * b3^q2 * b4^q3 * E(i)</span>
+<span class="comment">% log(yi) = logb0 + Xilogb1 + q1logb2 + q2logb3 + q3logb4</span>
+
+<span class="comment">% Allocate imported array to column variable names</span>
+CodedQ = data(:,1);
+Revenue = data(:,2);
+Q1 = data(:,3);
+Q2 = data(:,4);
+Q3 = data(:,5);
+years = [1996:2008];
+y = repmat(years,1,4)';
+y = sort(y);
+quarters = [1:4];
+q = repmat(quarters,1,13)';
+logrev = log(Revenue);
+
+<span class="comment">%tbl = table(CodedQ,Q1,Q2,Q3,logrev,'VariableNames',{'codedQ','q1','q2','q3','logrev'});</span>
+<span class="comment">%lm = fitlm(tbl);</span>
+
+lb0 = 3.621;
+lb1 = .002968;
+lb2 = -.3669;
+lb3 = -.3715;
+lb4 = -.3445;
+
+b0 = 10^lb0
+b1 = 10^lb1
+b2 = 10^lb2
+b3 = 10^lb3
+b4 = 10^lb4
+</pre><pre class="codeoutput">
+b0 =
+
+          4178.30366646622
+
+
+b1 =
+
+          1.00685747811791
+
+
+b2 =
+
+          0.42963534256987
+
+
+b3 =
+
+         0.425108706804616
+
+
+b4 =
+
+           0.4523764623325
+
+</pre><h2>Plot the Time Series<a name="3"></a></h2><pre class="codeinput">ts = timeseries(Revenue);
+plot(ts)
+set(gca, <span class="string">'XTick'</span>, 1:2:55)
+<span class="comment">% There definitely appears to be seasonality in the data, it looks like the</span>
+<span class="comment">% company sees a spike in sales around the holiday season in Q4</span>
+</pre><img vspace="5" hspace="5" src="newquizemdadts_01.png" alt=""> <h2>Analysis of fitted result<a name="4"></a></h2><pre class="codeinput"><span class="comment">% Quarterly, the compound growth result is .68%</span>
+</pre><h2>Forecast for Q2 2009<a name="5"></a></h2><pre class="codeinput">y = b0* b1^53 * b2^0 * b3^1 * b4^0
+</pre><pre class="codeoutput">
+y =
+
+          2551.54951144092
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Time Series Activity
+
+%% Information
+% Prepared by: Philip Dunay on March 12, 2015 for Emdad (QTM3610)
+
+%% Import the data
+[~, ~, raw] = xlsread('/Users/philipdunay/Dropbox/Spring 2015/QTM3610 Files/Class Data/Excel Data Files/Toys R Us.xls','DATA');
+raw = raw(2:end,2:end);
+format longg
+
+% Create output variable
+data = reshape([raw{:}],size(raw));
+
+%Y(i) = b0 * b1^(X(i)) * b2^q1 * b3^q2 * b4^q3 * E(i)
+% log(yi) = logb0 + Xilogb1 + q1logb2 + q2logb3 + q3logb4
+
+% Allocate imported array to column variable names
+CodedQ = data(:,1);
+Revenue = data(:,2);
+Q1 = data(:,3);
+Q2 = data(:,4);
+Q3 = data(:,5);
+years = [1996:2008];
+y = repmat(years,1,4)';
+y = sort(y);
+quarters = [1:4];
+q = repmat(quarters,1,13)';
+logrev = log(Revenue);
+
+%tbl = table(CodedQ,Q1,Q2,Q3,logrev,'VariableNames',{'codedQ','q1','q2','q3','logrev'});
+%lm = fitlm(tbl);
+
+lb0 = 3.621;
+lb1 = .002968;
+lb2 = -.3669;
+lb3 = -.3715;
+lb4 = -.3445;
+
+b0 = 10^lb0
+b1 = 10^lb1
+b2 = 10^lb2
+b3 = 10^lb3
+b4 = 10^lb4
+
+
+
+%% Plot the Time Series
+ts = timeseries(Revenue);
+plot(ts)
+set(gca, 'XTick', 1:2:55)
+% There definitely appears to be seasonality in the data, it looks like the
+% company sees a spike in sales around the holiday season in Q4
+
+%% Analysis of fitted result
+
+% Quarterly, the compound growth result is .68%
+
+%% Forecast for Q2 2009
+y = b0* b1^53 * b2^0 * b3^1 * b4^0
+
+
+##### SOURCE END #####
+--></body></html>
