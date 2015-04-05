@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Time Series Activity</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-03-12"><meta name="DC.source" content="newquizemdadts.m"><style type="text/css">
+      --><title>Time Series Activity</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-04-05"><meta name="DC.source" content="newquizemdadts.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Time Series Activity</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Information</a></li><li><a href="#2">Import the data</a></li><li><a href="#3">Plot the Time Series</a></li><li><a href="#4">Analysis of fitted result</a></li><li><a href="#5">Forecast for Q2 2009</a></li></ul></div><h2>Information<a name="1"></a></h2><p>Prepared by: Philip Dunay on March 12, 2015 for Emdad (QTM3610)</p><h2>Import the data<a name="2"></a></h2><pre class="codeinput">[~, ~, raw] = xlsread(<span class="string">'/Users/philipdunay/Dropbox/Spring 2015/QTM3610 Files/Class Data/Excel Data Files/Toys R Us.xls'</span>,<span class="string">'DATA'</span>);
+  </style></head><body><div class="content"><h1>Time Series Activity</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Information</a></li><li><a href="#2">Import the data</a></li><li><a href="#3">Plot the Time Series</a></li><li><a href="#4">Analysis of fitted result</a></li><li><a href="#5">Forecast for Q2 2009</a></li></ul></div><h2>Information<a name="1"></a></h2><p>Prepared by: Philip Dunay on March 12, 2015 for Emdad (QTM3610)</p><h2>Import the data<a name="2"></a></h2><pre class="codeinput">[~, ~, raw] = xlsread(<span class="string">'/Users/philipdunay/Google Drive/Spring 2015/QTM3610 Files/Class Data/Excel Data Files/Toys R Us.xls'</span>,<span class="string">'DATA'</span>);
 raw = raw(2:end,2:end);
 format <span class="string">longg</span>
 
@@ -103,43 +103,28 @@ b1 = 10^lb1
 b2 = 10^lb2
 b3 = 10^lb3
 b4 = 10^lb4
-</pre><pre class="codeoutput">
-b0 =
-
+</pre><pre class="codeoutput">b0 =
           4178.30366646622
-
-
 b1 =
-
           1.00685747811791
-
-
 b2 =
-
           0.42963534256987
-
-
 b3 =
-
          0.425108706804616
-
-
 b4 =
-
            0.4523764623325
-
 </pre><h2>Plot the Time Series<a name="3"></a></h2><pre class="codeinput">ts = timeseries(Revenue);
 plot(ts)
 set(gca, <span class="string">'XTick'</span>, 1:2:55)
+title(<span class="string">'WMT TS Plot'</span>)
+ylabel(<span class="string">'Revenue'</span>)
+xlabel(<span class="string">'Quarters'</span>)
 <span class="comment">% There definitely appears to be seasonality in the data, it looks like the</span>
 <span class="comment">% company sees a spike in sales around the holiday season in Q4</span>
 </pre><img vspace="5" hspace="5" src="newquizemdadts_01.png" alt=""> <h2>Analysis of fitted result<a name="4"></a></h2><pre class="codeinput"><span class="comment">% Quarterly, the compound growth result is .68%</span>
 </pre><h2>Forecast for Q2 2009<a name="5"></a></h2><pre class="codeinput">y = b0* b1^53 * b2^0 * b3^1 * b4^0
-</pre><pre class="codeoutput">
-y =
-
+</pre><pre class="codeoutput">y =
           2551.54951144092
-
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Time Series Activity
@@ -148,7 +133,7 @@ y =
 % Prepared by: Philip Dunay on March 12, 2015 for Emdad (QTM3610)
 
 %% Import the data
-[~, ~, raw] = xlsread('/Users/philipdunay/Dropbox/Spring 2015/QTM3610 Files/Class Data/Excel Data Files/Toys R Us.xls','DATA');
+[~, ~, raw] = xlsread('/Users/philipdunay/Google Drive/Spring 2015/QTM3610 Files/Class Data/Excel Data Files/Toys R Us.xls','DATA');
 raw = raw(2:end,2:end);
 format longg
 
@@ -185,13 +170,13 @@ b1 = 10^lb1
 b2 = 10^lb2
 b3 = 10^lb3
 b4 = 10^lb4
-
-
-
 %% Plot the Time Series
 ts = timeseries(Revenue);
 plot(ts)
 set(gca, 'XTick', 1:2:55)
+title('WMT TS Plot')
+ylabel('Revenue')
+xlabel('Quarters')
 % There definitely appears to be seasonality in the data, it looks like the
 % company sees a spike in sales around the holiday season in Q4
 
