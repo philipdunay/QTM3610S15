@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Linear Algebra</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Transposition</a></li><li><a href="#2">Identity Matrix</a></li><li><a href="#3">Matrix Inverse</a></li><li><a href="#4">Dot Product</a></li><li><a href="#5">Orthogonality</a></li><li><a href="#6">Basis</a></li><li><a href="#7">Symmetric Matrix</a></li><li><a href="#8">Idempotent Matrix</a></li><li><a href="#9">Rank of a Matrix</a></li><li><a href="#10">Linear Combination</a></li><li><a href="#11">Cross Product</a></li><li><a href="#12">Scalar Projection</a></li><li><a href="#13">Symmetric Matrix</a></li><li><a href="#14">Idempotent Matrix</a></li><li><a href="#15">Rank of a Matrix</a></li><li><a href="#16">Linear Combination</a></li><li><a href="#17">Positive-definite Matrix</a></li></ul></div><h2>Transposition<a name="1"></a></h2><p>Transposition is to switch the rows and columns of a matrix. It is easily done in MATLAB&reg; using the apostrophe immediately following a matrix: <img src="EMLinAlg_eq58093.png" alt="$A'$"></p><pre class="codeinput">TranEx = [0 100; 4 17]
+  </style></head><body><div class="content"><h1>Linear Algebra</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Transposition</a></li><li><a href="#2">Identity Matrix</a></li><li><a href="#3">Matrix Inverse</a></li><li><a href="#4">Dot Product</a></li><li><a href="#5">Orthogonality</a></li><li><a href="#6">Basis</a></li><li><a href="#7">Symmetric Matrix</a></li><li><a href="#8">Idempotent Matrix</a></li><li><a href="#9">Rank of a Matrix</a></li><li><a href="#10">Linear Combination</a></li><li><a href="#11">Cross Product</a></li><li><a href="#12">Scalar Projection</a></li><li><a href="#13">Positive-definite Matrix</a></li></ul></div><h2>Transposition<a name="1"></a></h2><p>Transposition is to switch the rows and columns of a matrix. It is easily done in MATLAB&reg; using the apostrophe immediately following a matrix: <img src="EMLinAlg_eq58093.png" alt="$A'$"></p><pre class="codeinput">TranEx = [0 100; 4 17]
 TranRes = TranEx'
 </pre><pre class="codeoutput">TranEx =
      0   100
@@ -147,33 +147,7 @@ rankEx =
 </pre><h2>Linear Combination<a name="10"></a></h2><p>Any combination of scalars and vectors or their sums. Linear dependence is identified through linear combinations, with linearly independent vectors being unable to be defined by any combination of vectors in a space.</p><h2>Cross Product<a name="11"></a></h2><p>A cross product of two vectors yields a third vector perpendicular (normal) to both original vectors.</p><pre class="codeinput">crossProd = cross([1 2 3],[4 5 6])
 </pre><pre class="codeoutput">crossProd =
     -3     6    -3
-</pre><h2>Scalar Projection<a name="12"></a></h2><p>This is used to find the length of a vector's "shadow" along the axis it is projecting on. Generally, the method is to mutliply the length of the vector by the cosine of the angle between it and the axis to get the length of the projection along the axis.</p><h2>Symmetric Matrix<a name="13"></a></h2><p>Symmetric matrices remain unchanged when they are transposed. A symbolic example is <img src="EMLinAlg_eq47033.png" alt="$A^T = A$">. Below, it should be clear that the two matrices are symmetric.</p><pre class="codeinput">SymMat = [1 0 1; 0 1 0; 1 0 1]
-SymMatTrans = SymMat'
-</pre><pre class="codeoutput">SymMat =
-     1     0     1
-     0     1     0
-     1     0     1
-SymMatTrans =
-     1     0     1
-     0     1     0
-     1     0     1
-</pre><h2>Idempotent Matrix<a name="14"></a></h2><p>A matrix which remains unchanged if multiplied by itself. A symbolic example is <img src="EMLinAlg_eq66249.png" alt="$A^2 = A$">. An example of a 2x2 idempotent matrix is below.</p><pre class="codeinput">IdempMat = [1, 1; 0, 0]
-IdempMatSq = IdempMat^2
-</pre><pre class="codeoutput">IdempMat =
-     1     1
-     0     0
-IdempMatSq =
-     1     1
-     0     0
-</pre><h2>Rank of a Matrix<a name="15"></a></h2><p>Rank indicates the number of independent variables (columns or rows) in a matrix. Can be found using row-reduced echelon form and identifying the pivots (number of rows with leading ones)</p><pre class="codeinput">rrefEx = rref([1 2 3; 4 5 6; 7 8 9])
-rankEx = rank([1 2 3; 4 5 6; 7 8 9])
-</pre><pre class="codeoutput">rrefEx =
-     1     0    -1
-     0     1     2
-     0     0     0
-rankEx =
-     2
-</pre><h2>Linear Combination<a name="16"></a></h2><p>Any combination of scalars and vectors or their sums. Linear dependence is identified through linear combinations, with linearly independent vectors being unable to be defined by any combination of vectors in a space.</p><h2>Positive-definite Matrix<a name="17"></a></h2><p>Positive definite matrices are described by the process <img src="EMLinAlg_eq27502.png" alt="$z^T M z$">, resulting in a matrix with no negative entries nor zeros as entries for any <img src="EMLinAlg_eq88768.png" alt="$z$">. This is another way of saying that the eigendecomposition of the matrix results in only positive eigenvalues. Positive-semidefinite matrices are determined in the same way, but they may contain zeros as entries.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+</pre><h2>Scalar Projection<a name="12"></a></h2><p>This is used to find the length of a vector's "shadow" along the axis it is projecting on. Generally, the method is to mutliply the length of the vector by the cosine of the angle between it and the axis to get the length of the projection along the axis.</p><h2>Positive-definite Matrix<a name="13"></a></h2><p>Positive definite matrices are described by the process <img src="EMLinAlg_eq27502.png" alt="$z^T M z$">, resulting in a matrix with no negative entries nor zeros as entries for any <img src="EMLinAlg_eq88768.png" alt="$z$">. This is another way of saying that the eigendecomposition of the matrix results in only positive eigenvalues. Positive-semidefinite matrices are determined in the same way, but they may contain zeros as entries.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Linear Algebra
 %% Transposition
@@ -260,29 +234,6 @@ crossProd = cross([1 2 3],[4 5 6])
 % is projecting on. Generally, the method is to mutliply the length of the
 % vector by the cosine of the angle between it and the axis to get the
 % length of the projection along the axis. 
-%% Symmetric Matrix
-% Symmetric matrices remain unchanged when they are transposed. 
-% A symbolic example is $A^T = A$. Below, it should be clear that the two
-% matrices are symmetric.
-SymMat = [1 0 1; 0 1 0; 1 0 1]
-SymMatTrans = SymMat'
-%% Idempotent Matrix
-% A matrix which remains unchanged if multiplied by itself. 
-% A symbolic example is $A^2 = A$. An example of a 2x2 idempotent matrix is
-% below.
-IdempMat = [1, 1; 0, 0]
-IdempMatSq = IdempMat^2
-%% Rank of a Matrix
-% Rank indicates the number of independent variables (columns or rows) in a matrix.
-% Can be found using row-reduced echelon form and identifying the pivots
-% (number of rows with leading ones)
-rrefEx = rref([1 2 3; 4 5 6; 7 8 9])
-rankEx = rank([1 2 3; 4 5 6; 7 8 9])
-%% Linear Combination
-% Any combination of scalars and vectors or their sums. Linear dependence
-% is identified through linear combinations, with linearly independent
-% vectors being unable to be defined by any combination of vectors in a
-% space.
 %% Positive-definite Matrix
 % Positive definite matrices are described by the process $z^T M z$,
 % resulting in a matrix with no negative entries nor zeros as entries for 
