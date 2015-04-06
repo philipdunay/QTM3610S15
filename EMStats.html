@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>EMStats</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-04-05"><meta name="DC.source" content="EMStats.m"><style type="text/css">
+      --><title>EMStats</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-04-06"><meta name="DC.source" content="EMStats.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,33 +66,45 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Mean</a></li><li><a href="#2">Variance</a></li><li><a href="#3">Standard Deviation</a></li><li><a href="#4">Covariance</a></li><li><a href="#5">Correlation</a></li></ul></div><h2>Mean<a name="1"></a></h2><p>The average of elements in a set. Computed by summing the elements and dividing that sum by the number of elements. <img src="EMStats_eq02839.png" alt="$mean = (x_1 + x_2 + .. + x_n)/n$">.</p><pre class="codeinput">avg = mean([1 2 3 4])
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Mean</a></li><li><a href="#2">Variance</a></li><li><a href="#3">Standard Deviation</a></li><li><a href="#4">Covariance</a></li><li><a href="#5">Correlation</a></li></ul></div><h2>Mean<a name="1"></a></h2><p>The average of elements in a set. Computed by summing the elements and dividing that sum by the number of elements. <img src="EMStats_eq02839.png" alt="$mean = (x_1 + x_2 + .. + x_n)/n$">. Typically denoted by <img src="EMStats_eq68803.png" alt="$\mu$">.</p><pre class="codeinput">avg = mean([1 2 3 4])
 </pre><pre class="codeoutput">avg =
-          2.5
+                       2.5
 </pre><h2>Variance<a name="2"></a></h2><p>A measure of the "spread" of data from the mean. Designated as <img src="EMStats_eq03760.png" alt="$\sigma^2$">, it is the sum of the squares of the difference in the observations from the means: <img src="EMStats_eq74989.png" alt="$\sigma^2 = \sum(X-\mu)^2$">.</p><pre class="codeinput">variance = var([1 2 3 4])
 </pre><pre class="codeoutput">variance =
-       1.6667
-</pre><h2>Standard Deviation<a name="3"></a></h2><p>The square root of the variance, designated by a lowercase sigma.</p><pre class="codeinput">stdex = std([1 2 3 4])
+          1.66666666666667
+</pre><h2>Standard Deviation<a name="3"></a></h2><p>The square root of the variance, designated by <img src="EMStats_eq24873.png" alt="$\sigma$">.</p><pre class="codeinput">stdex = std([1 2 3 4])
 </pre><pre class="codeoutput">stdex =
-        1.291
+          1.29099444873581
 </pre><h2>Covariance<a name="4"></a></h2><p>The measure of how much two variances change together.</p><pre class="codeinput">covar = cov([rand(4,4)])
 </pre><pre class="codeoutput">covar =
-     0.089454    -0.012803    -0.015401   -0.0050734
-    -0.012803      0.01365    -0.027912    -0.041719
-    -0.015401    -0.027912      0.10449     0.089941
-   -0.0050734    -0.041719     0.089941      0.16728
+  Columns 1 through 3
+         0.126549350379714       -0.0976890315550979        0.0426587060525071
+       -0.0976890315550979         0.163616080445155      -0.00261235515371647
+        0.0426587060525071      -0.00261235515371647        0.0463762776618362
+        0.0333264903475603       -0.0506486439025715         0.023728334465344
+  Column 4
+        0.0333264903475603
+       -0.0506486439025715
+         0.023728334465344
+        0.0363760068225142
 </pre><h2>Correlation<a name="5"></a></h2><p>Assesses the degree to which two elements are related. Typically operates on matrices and results in a square matrix. Standardized to a maximum value of 1.</p><pre class="codeinput">correl = corrcoef([rand(4,4)])
 </pre><pre class="codeoutput">correl =
-            1     -0.15198     0.060082      0.98142
-     -0.15198            1     -0.94867     -0.22253
-     0.060082     -0.94867            1     0.075635
-      0.98142     -0.22253     0.075635            1
+  Columns 1 through 3
+                         1         0.525512169961255        -0.113789188047501
+         0.525512169961255                         1         0.427337445777233
+        -0.113789188047501         0.427337445777233                         1
+        0.0166597922606118         0.847975254231738         0.430157609328301
+  Column 4
+        0.0166597922606118
+         0.847975254231738
+         0.430157609328301
+                         1
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Mean
 % The average of elements in a set. Computed by summing the elements and
 % dividing that sum by the number of elements. $mean = (x_1 + x_2 + .. +
-% x_n)/n$.
+% x_n)/n$. Typically denoted by $\mu$.
 avg = mean([1 2 3 4])
 %% Variance
 % A measure of the "spread" of data from the mean. Designated as
@@ -100,7 +112,7 @@ avg = mean([1 2 3 4])
 % observations from the means: $\sigma^2 = \sum(X-\mu)^2$.
 variance = var([1 2 3 4])
 %% Standard Deviation
-% The square root of the variance, designated by a lowercase sigma.
+% The square root of the variance, designated by $\sigma$.
 stdex = std([1 2 3 4])
 %% Covariance
 % The measure of how much two variances change together.
