@@ -66,14 +66,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Analysis of Variance</h1><!--introduction--><p>Known as ANOVA, this analysis is used to compare the means of the variables for significant differences. One-way ANOVA, as its name may indicate, is for the comparison of means for one dependent variable, and MANOVA is for comparing variable means against those of more than one dependent variable. The ANOVA test is typically used to see if a procedure or effect has had any difference on the mean of the observations.</p><p>When performing an ANOVA, the null hypothesis is typically that all of the means are the same. You are seeking to disprove this by concluding that the means are significantly different, indicating that some action had a result on your data. Therefore, it follows that the alternative hypothesis is that at least one mean is statistically significant. As a general rule, a 95% percent confidence interval is a good measure, indicating that a p-value of .05 or less is required to reject the null hypothesis and conclude that there is a statistically significant difference in the means.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Performing ANOVA in Minitab</a></li><li><a href="#2">One-way ANOVA Output Example</a></li><li><a href="#3">One-way ANOVA Output Items</a></li><li><a href="#4">Two-way ANOVA Output Example</a></li><li><a href="#5">Interpreting Two-way ANOVA / MANOVA Output</a></li><li><a href="#6">MATLAB&reg; Functions for (M)ANOVA</a></li></ul></div><h2>Performing ANOVA in Minitab<a name="1"></a></h2><h2>One-way ANOVA Output Example<a name="2"></a></h2><p><b><a href="http://philipdunay.github.io/QTM3610S15/oneway.html">Click here for an example of one-way ANOVA output performed in Minitab with the data below.</a></b></p><pre class="codeinput">OneWayTable = [1997 1998 1999; 17 6 4; 13 5 7; 16 5 6; 16 8 7]
+  </style></head><body><div class="content"><h1>Analysis of Variance</h1><!--introduction--><p>Known as ANOVA, this analysis is used to compare the means of the variables for significant differences. One-way ANOVA, as its name may indicate, is for the comparison of means for one dependent variable, and MANOVA is for comparing variable means against those of more than one dependent variable. The ANOVA test is typically used to see if a procedure or effect has had any difference on the mean of the observations.</p><p>When performing an ANOVA, the null hypothesis is typically that all of the means are the same. You are seeking to disprove this by concluding that the means are significantly different, indicating that some action had a result on your data. Therefore, it follows that the alternative hypothesis is that at least one mean is statistically significant. As a general rule, a 95% percent confidence interval is a good measure, indicating that a p-value of .05 or less is required to reject the null hypothesis and conclude that there is a statistically significant difference in the means.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Performing ANOVA in Minitab</a></li><li><a href="#2">One-way ANOVA Output Example</a></li><li><a href="#3">One-way ANOVA Output Items</a></li><li><a href="#4">Two-way ANOVA Output Example</a></li><li><a href="#5">Interpreting Two-way ANOVA / MANOVA Output</a></li><li><a href="#6">Key Takeaways From ANOVA Output</a></li><li><a href="#7">MATLAB&reg; Functions for (M)ANOVA</a></li></ul></div><h2>Performing ANOVA in Minitab<a name="1"></a></h2><p>Select ANOVA and choose one- or two-way. In the response section, put the dependent variables and in the factor box, the independent. For comparisons, use the Tukey comparison. Opt for the confidence interval plot and residual plots in the graphs tab.</p><h2>One-way ANOVA Output Example<a name="2"></a></h2><p><b><a href="http://philipdunay.github.io/QTM3610S15/oneway.html">Click here for an example of one-way ANOVA output performed in Minitab with the data below.</a></b></p><pre class="codeinput">OneWayTable = [1997 1998 1999; 17 6 4; 13 5 7; 16 5 6; 16 8 7]
 </pre><pre class="codeoutput">OneWayTable =
         1997        1998        1999
           17           6           4
           13           5           7
           16           5           6
           16           8           7
-</pre><h2>One-way ANOVA Output Items<a name="3"></a></h2><div><ul><li><b>Factor Information:</b> This will identify the number and titles of variables being used in the ANOVA.</li><li><b>Analysis of Variance:</b></li><li><b>Model Summary:</b></li><li><b>Means:</b> Using the means and standard deviations calculated for each variable, it will display those as well as calculate an confidence interval based on the specified confidence interval.</li><li><b>Grouping Information w/ Tukey Method:</b> Groups means by letters, showing which means fall into which category and which means are significantly different.</li><li><b>Tukey Tests:</b></li><li><b>Tukey Plot:</b></li><li><b>Interval Plot:</b></li></ul></div><h2>Two-way ANOVA Output Example<a name="4"></a></h2><p><b><a href="http://philipdunay.github.io/QTM3610S15/twoway.html">Click here for an example of two-way ANOVA output performed in Minitab with the data below.</a></b></p><h2>Interpreting Two-way ANOVA / MANOVA Output<a name="5"></a></h2><h2>MATLAB&reg; Functions for (M)ANOVA<a name="6"></a></h2><div><ul><li><tt>[p,tbl,stats] = anova1(y)</tt> - this code will perform a one-way ANOVA and return the p-value, a table of descriptive statistics and a stats structure, which can be used as the MATLAB&reg; function <tt>multcompare</tt>'s input.</li><li><tt>[p,tbl,stats] = anova2(y,reps)</tt> - will output the same results as above, but for a two-way ANOVA.</li><li><tt>[d,p,stats] = manova1(X,group,alpha)</tt> - this will perform a MANOVA test, giving a p-value, p, an alpha value, d, and a stats structure. The alpha value is the significance level in terms of the dimensionality of the means.</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+</pre><h2>One-way ANOVA Output Items<a name="3"></a></h2><div><ul><li><b>Factor Information:</b> This will identify the number and titles of variables being used in the ANOVA.</li><li><b>Analysis of Variance:</b> The degrees of freedom, sum of squares between groups and mean of squares are not of critical importance in this class, we are simply looking for the p-value in this table. The F-stat should be fairly large, when the p-value is small.</li><li><b>Model Summary:</b> S is the mean squared error, and the R-squared values in this table are indications of how well the model fits the data. Typically the R-squared (adjusted) value is used.</li><li><b>Means:</b> Using the means and standard deviations calculated for each variable, it will display those as well as calculate an confidence interval based on the specified confidence interval.</li><li><b>Grouping Information w/ Tukey Method:</b> Groups means by letters, showing which means fall into which category and which means are significantly different.</li><li><b>Tukey Tests:</b> This test is for determining the differenced between the means of pairwise variables in your ANOVA, it helps to highlight differences.</li><li><b>Tukey Plot:</b> A plot of the Tukey Test confidence intervals, again, helping to highlight differences in the means.</li><li><b>Interval Plot:</b> Confidence intervals of the means, should be similar to a rotated Tukey plot in its appearance. If any difference in the means is present, the line should make it obvious.</li></ul></div><h2>Two-way ANOVA Output Example<a name="4"></a></h2><p><b><a href="http://philipdunay.github.io/QTM3610S15/twoway.html">Click here for an example of two-way ANOVA output performed in Minitab with the data below.</a></b></p><h2>Interpreting Two-way ANOVA / MANOVA Output<a name="5"></a></h2><p>This goes the same way as interpreting the one-way ANOVA output. If any p-value is insignificant, reject because the means for at least one group are the same.</p><h2>Key Takeaways From ANOVA Output<a name="6"></a></h2><div><ul><li><b>p-value:</b> if this value is under the alpha (1 - confidence interval %), reject the null hypothesis and conclude that the means are different.</li><li><b>group means:</b> use the plots and mean confidence intervals to compare the group means and determine if means fall into different groups. The Tukey Test can also be used here to group means.</li><li><b>R-squared:</b> Analyze how well the model fits your data by using the adjusted R-squared value. The closer it is to 100% the better.</li></ul></div><h2>MATLAB&reg; Functions for (M)ANOVA<a name="7"></a></h2><div><ul><li><tt>[p,tbl,stats] = anova1(y)</tt> - this code will perform a one-way ANOVA and return the p-value, a table of descriptive statistics and a stats structure, which can be used as the MATLAB&reg; function <tt>multcompare</tt>'s input.</li><li><tt>[p,tbl,stats] = anova2(y,reps)</tt> - will output the same results as above, but for a two-way ANOVA.</li><li><tt>[d,p,stats] = manova1(X,group,alpha)</tt> - this will perform a MANOVA test, giving a p-value, p, an alpha value, d, and a stats structure. The alpha value is the significance level in terms of the dimensionality of the means.</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Analysis of Variance
 % Known as ANOVA, this analysis is used to compare the means of the
@@ -91,9 +91,11 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % a 95% percent confidence interval is a good measure, indicating that a
 % p-value of .05 or less is required to reject the null hypothesis and
 % conclude that there is a statistically significant difference in the means.
-%
 %% Performing ANOVA in Minitab
-% 
+% Select ANOVA and choose one- or two-way. In the response section, put the
+% dependent variables and in the factor box, the independent. For
+% comparisons, use the Tukey comparison. Opt for the confidence interval
+% plot and residual plots in the graphs tab.
 %% One-way ANOVA Output Example
 % *<http://philipdunay.github.io/QTM3610S15/oneway.html Click here
 % for an example of one-way ANOVA output performed in Minitab with the data
@@ -102,24 +104,43 @@ OneWayTable = [1997 1998 1999; 17 6 4; 13 5 7; 16 5 6; 16 8 7]
 %% One-way ANOVA Output Items
 % * *Factor Information:* This will identify the number and titles of
 % variables being used in the ANOVA.
-% * *Analysis of Variance:* 
-% * *Model Summary:* 
+% * *Analysis of Variance:* The degrees of freedom, sum of squares between groups and mean
+% of squares are not of critical importance in this class, we are simply
+% looking for the p-value in this table. The F-stat should be fairly large,
+% when the p-value is small.
+% * *Model Summary:* S is the mean squared error, and the R-squared values
+% in this table are indications of how well the model fits the data.
+% Typically the R-squared (adjusted) value is used.
 % * *Means:* Using the means and standard deviations calculated for each
 % variable, it will display those as well as calculate an confidence
 % interval based on the specified confidence interval.
 % * *Grouping Information w/ Tukey Method:* Groups means by letters,
 % showing which means fall into which category and which means are
 % significantly different. 
-% * *Tukey Tests:*
-% * *Tukey Plot:* 
-% * *Interval Plot:*
+% * *Tukey Tests:* This test is for determining the differenced between the
+% means of pairwise variables in your ANOVA, it helps to highlight
+% differences.
+% * *Tukey Plot:* A plot of the Tukey Test confidence intervals, again,
+% helping to highlight differences in the means.
+% * *Interval Plot:* Confidence intervals of the means, should be similar
+% to a rotated Tukey plot in its appearance. If any difference in the means
+% is present, the line should make it obvious.
 %% Two-way ANOVA Output Example
 % *<http://philipdunay.github.io/QTM3610S15/twoway.html Click here
 % for an example of two-way ANOVA output performed in Minitab with the data
 % below.>*
 %% Interpreting Two-way ANOVA / MANOVA Output
-% 
-% 
+% This goes the same way as interpreting the one-way ANOVA output. If any
+% p-value is insignificant, reject because the means for at least one group
+% are the same.
+%% Key Takeaways From ANOVA Output
+% * *p-value:* if this value is under the alpha (1 - confidence interval
+% %), reject the null hypothesis and conclude that the means are different.
+% * *group means:* use the plots and mean confidence intervals to compare
+% the group means and determine if means fall into different groups. The
+% Tukey Test can also be used here to group means.
+% * *R-squared:* Analyze how well the model fits your data by using the
+% adjusted R-squared value. The closer it is to 100% the better.
 %% MATLAB(R) Functions for (M)ANOVA
 % * |[p,tbl,stats] = anova1(y)| - this code will perform a one-way ANOVA
 % and return the p-value, a table of descriptive statistics and a stats
