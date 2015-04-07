@@ -1,0 +1,122 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Regression</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-04-06"><meta name="DC.source" content="EMReg.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Regression</h1><!--introduction--><p>Simple and Multivariate Linear Regressions</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Reasoning Behind Regression</a></li><li><a href="#2">Simple Linear Regression</a></li><li><a href="#4">Multivariate Linear Regression</a></li><li><a href="#5">Stepwise Regression</a></li><li><a href="#6">Interaction</a></li><li><a href="#7">MATLAB&reg; Functions</a></li></ul></div><h2>Reasoning Behind Regression<a name="1"></a></h2><p>Regression is performed to fit a curve to a set of data, typically by minimizing the distance between the curve and the datapoints. We have not focued on the math behind regression in this class, but mostly on calculation, so that will be the main focus of this page. In the outputs, you will be looking for significant coefficients for each variable in the output and a high R-squared value to show that the model fits the data well.</p><h2>Simple Linear Regression<a name="2"></a></h2><p>This is not much more than what has been done in other classes. At its most basic level, it is fitting the slope to linear data and finding a y-intercept. Cubic, quadratic, exponential and other methods can be used, but it is all about finding the coefficients for each variable that most minimizes the sum of squared errors when performing the regression. At their most basic (linear and quadratic), these regressions take the forms below.</p><p><img src="EMReg_eq38098.png" alt="$$Y = b_0 + b_1*X$$"></p><p><img src="EMReg_eq61608.png" alt="$$Y = b_0 + b_1*X + b_2*X^2$$"></p><h2>Multivariate Linear Regression<a name="4"></a></h2><p>This is the case where there is more than one dependent variable being regressed for. These can be found in SPSS under Analyze -&gt; General Linear Model -&gt; Multivariate. The dependent entries will be your dependent variables and the independent variables will go in the covariates box this time.</p><h2>Stepwise Regression<a name="5"></a></h2><p>The stepwise regression option in the general linear model tool in SPSS has the option to set a stepwise regression mode in a small dropdown box underneath the input area for the independent variables. The stepwise function will try different combinations, adding and removing variables until the best fit is achieved.</p><h2>Interaction<a name="6"></a></h2><p>To attempt to find better results for your regression it may be possible to have your variables interact. This means that you multiply them in combinations and regress with them to find a coefficient and hope that they increase the fit of the model. A two-way regression would be to multiply each variable together in sets of two, and three-way would be the same, with each combination of variables multiplied in groups of three.</p><h2>MATLAB&reg; Functions<a name="7"></a></h2><p><tt>lm = fitlm(tbl)</tt> will accept a table of values and headers and run a linear regression on it. You can set the type or specify which variables to use by putting a comma after tbl and either entering in quotation marks the type (e.g. 'linear') or write in quotes ('Dep~1+Indep1+Indep2') to specify the model to your desired output. <tt>b = stepwisefit(X,y)</tt> will run a stepwise regression, with X being the independent variables and y being dependent variables.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Regression
+% Simple and Multivariate Linear Regressions
+%% Reasoning Behind Regression
+% Regression is performed to fit a curve to a set of data, typically by
+% minimizing the distance between the curve and the datapoints. We have not
+% focued on the math behind regression in this class, but mostly on
+% calculation, so that will be the main focus of this page. In the outputs, you will be
+% looking for significant coefficients for each variable in the output and
+% a high R-squared value to show that the model fits the data well.
+%% Simple Linear Regression
+% This is not much more than what has been done in other classes. At its
+% most basic level, it is fitting the slope to linear data and finding a
+% y-intercept. Cubic, quadratic, exponential and other methods can be used,
+% but it is all about finding the coefficients for each variable that most
+% minimizes the sum of squared errors when performing the regression. At
+% their most basic (linear and quadratic), these regressions take the forms
+% below.
+%%
+% 
+% $$Y = b_0 + b_1*X$$
+%
+% $$Y = b_0 + b_1*X + b_2*X^2$$
+% 
+%% Multivariate Linear Regression
+% This is the case where there is more than one dependent variable being
+% regressed for. These can be found in SPSS under Analyze -> General Linear
+% Model -> Multivariate. The dependent entries will be your dependent variables and
+% the independent variables will go in the covariates box this time. 
+%% Stepwise Regression
+% The stepwise regression option in the general linear model tool in SPSS
+% has the option to set a stepwise regression mode in a small dropdown box
+% underneath the input area for the independent variables. The stepwise
+% function will try different combinations, adding and removing variables
+% until the best fit is achieved.
+%% Interaction
+% To attempt to find better results for your regression it may be possible
+% to have your variables interact. This means that you multiply them in
+% combinations and regress with them to find a coefficient and hope that
+% they increase the fit of the model. A two-way regression would be to
+% multiply each variable together in sets of two, and three-way would be
+% the same, with each combination of variables multiplied in groups of
+% three.
+%% MATLAB(R) Functions
+% |lm = fitlm(tbl)| will accept a table of values and headers and run a
+% linear regression on it. You can set the type or specify which variables
+% to use by putting a comma after tbl and either entering in quotation
+% marks the type (e.g. 'linear') or write in quotes ('Dep~1+Indep1+Indep2')
+% to specify the model to your desired output. 
+% |b = stepwisefit(X,y)| will run a stepwise regression, with X being the
+% independent variables and y being dependent variables.
+##### SOURCE END #####
+--></body></html>
